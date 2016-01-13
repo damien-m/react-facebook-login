@@ -67,7 +67,18 @@ class FacebookLogin extends React.Component {
   };
 
   click = () => {
-    FB.login(this.checkLoginState, { scope: this.props.scope });
+    const CHROME_IOS_UA = 'CriOS'
+    if(navigator.userAgent.match(CHROME_IOS_UA) {
+      const FB_HOST = 'https://www.facebook.com';
+      const FB_PATH = '/dialog/oauth';
+      window.open(
+        `${FB_HOST}${FB_PATH}?client_id='${this.props.appID}&redirect_uri='${document.location.href}&scope=${this.props.scope}`,
+        '',
+        null
+      );
+    } else {
+      FB.login(this.checkLoginState, { scope: this.props.scope });
+    }
   };
 
   render() {
